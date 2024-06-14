@@ -20,6 +20,19 @@ export const getUsers = async (req, res) => {
     }
 };
 
+export const getUserById = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+        const user = await User.findById(userId).select('-password');
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json(user);
+    } catch (e) {
+        res.status(500).json({ message: e.message });
+    }
+};
+
 export const createUser = [
     validateUserData,
     handleValidationErrors,

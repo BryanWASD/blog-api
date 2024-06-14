@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getUsers, createUser, deleteUser, editUser } from '../controllers/userController.js';
+import { getUsers, getUserById, createUser, deleteUser, editUser } from '../controllers/userController.js';
 import { loginUser } from '../controllers/loginController.js';
 import { getPublications, createPublication, deletePublication, editPublication } from '../controllers/publicationController.js'
 import { createComment, editComment, deleteComment } from '../controllers/commentController.js'
@@ -10,6 +10,8 @@ const router = Router();
 //users
 
 router.get('/users', getUsers);
+
+router.get('/user', authentication, getUserById)
 
 router.post('/register', createUser);
 

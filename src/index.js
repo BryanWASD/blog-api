@@ -3,7 +3,12 @@ const app = express();
 import routes from './routes/index.js';
 import { connectDB } from './config/db.js'
 import { PORT } from '../src/config/config.js';
+import cors from 'cors';
 connectDB();
+
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 
 app.use(express.json());
 
